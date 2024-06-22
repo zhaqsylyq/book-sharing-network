@@ -1,5 +1,7 @@
 package com.zhaqsylyq.book.user;
 
+import com.zhaqsylyq.book.book.Book;
+import com.zhaqsylyq.book.history.BookTransactionHistory;
 import com.zhaqsylyq.book.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -41,10 +43,10 @@ public class User implements UserDetails, Principal {
     private boolean enabled;
     @ManyToMany(fetch = EAGER)
     private List<Role> roles;
-//    @OneToMany(mappedBy = "owner")
-//    private List<Book> books;
-//    @OneToMany(mappedBy = "user")
-//    private List<BookTransactionHistory> histories;
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
